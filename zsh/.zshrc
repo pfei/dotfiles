@@ -13,7 +13,9 @@ export ZSH="$HOME/.oh-my-zsh"
 if [[ -f /etc/is_server ]]; then
     ZSH_THEME="refined"
 else
-    ZSH_THEME="minimal"
+    # ZSH_THEME="minimal"
+    ZSH_THEME="arrow"
+    # ZSH_THEME="avit"
 fi
 
 
