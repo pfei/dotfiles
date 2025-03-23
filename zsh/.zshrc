@@ -176,6 +176,23 @@ function lst() {
   ls -t --color=always | head -n ${1:-5}
 }
 
+# Set cursor color and shape
+cursor_color() {
+  echo -ne '\e]12;#F9E2AE\a'
+  echo -ne '\e[4 q'
+}
+
+# Execute cursor_color function before each prompt
+precmd_functions+=(cursor_color)
+
+# Reset cursor on exit
+zle-line-finish() {
+  echo -ne '\e[0 q'
+}
+zle -N zle-line-finish
+
+# Initial cursor setup
+cursor_color
 
 export TMUX_TIME_FORMAT="| %H:%M |"
 
