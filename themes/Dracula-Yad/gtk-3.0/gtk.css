@@ -1,0 +1,24 @@
+/* Import the original Dracula theme as base */
+@import "/home/pierre/.themes/Dracula/gtk-3.0/gtk.css";
+
+#yad-dialog-window {
+  /* background-color: #282a36;   */
+  background-color: blue; /* Dracula background */
+  border: 2px solid #bd93f9; /* Purple border */
+  font-size: 16px; /* Increase base font size for the entire dialog */
+}
+
+#yad-dialog-label {
+  color: #ff79c6;
+  /* color: blue; */
+  font-weight: bold;
+  font-size: 30px; /* Larger text for labels */
+}
+
+#yad-dialog-button {
+  background-color: #44475a; /* Dracula selection color */
+  /* color: #f8f8f2;  */
+  color: pink; /* Dracula foreground */
+  font-size: 16px; /* Larger text for buttons */
+  padding: 30px 40px; /* Increase button size */
+}
