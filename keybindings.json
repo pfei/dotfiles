@@ -8,5 +8,15 @@
     "key": "shift+alt+f",
     "command": "editor.action.formatDocument",
     "when": "editorHasDocumentFormattingProvider && !editorReadonly"
+  },
+  {
+    "key": "ctrl+k ctrl+shift+4", // Fold under cursor
+    "command": "editor.fold",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+k ctrl+shift+5", // Unfold under cursor
+    "command": "editor.unfold",
+    "when": "editorTextFocus"
   }
 ]
