@@ -204,3 +204,28 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin
 # Add user-specific Go binaries to PATH
 export PATH=$PATH:~/go/bin
+
+
+alias cursor='/home/pierre/Applications/Cursor-1.0.0-x86_64.AppImage'
+
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)" # This line loads pyenv-virtualenv for virtualenvwrapper compatibility
+
+export PATH="$HOME/.local/bin:$PATH"
+export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.13.3/bin/python"
+
+fpath=( ~/.zsh_autoload_functions $fpath )
+autoload -Uz load_google_api_key
+
+export PATH=$PATH:/usr/sbin
+
+# virtualenvwrapper configuration (for pyenv)
+export WORKON_HOME=$HOME/venvs
+export VIRTUALENVWRAPPER_PYTHON=$(pyenv which python) # Uses the active pyenv python
+source $(pyenv root)/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh
+# Alternative source (if the above path is not found)
+# source $(which virtualenvwrapper.sh)
