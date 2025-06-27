@@ -1,49 +1,65 @@
 {
+  // --- General Editor Settings ---
+  "editor.formatOnSave": true, // Global setting: automatically format code on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit", // ESLint auto-fix on save
+    "source.organizeImports": "explicit" // Automatically organize imports on save (for Python/JS/TS)
+  },
+  "editor.minimap.enabled": false, // Disable minimap
+  "files.eol": "\n", // Ensure consistent line endings (LF for Linux/macOS)
+
+  // --- Chat/UI Settings ---
+  "chat.commandCenter.enabled": false, // Disable the chat command center
+
+  // --- Formatter Settings by Language ---
+
+  // JSON files (with and without comments)
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
-    // ← This targets JSON files with comments
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // JavaScript & TypeScript files
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  },
+
+  // HTML & CSS files
   "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.formatOnSave": true,
+
+  // Shell Script files
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "github.copilot.enable": {
-    "*": false,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
+
+  // Python files
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff" // Set Ruff as the default formatter for .py files
   },
 
-  // ESLint integration
-  "eslint.validate": ["typescript", "javascript"],
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+  // Jupyter Notebook Python code cells
+  "[jupyter]": {
+    "editor.defaultFormatter": "charliermarsh.ruff" // Set Ruff as the default formatter for notebook cells
   },
-  "editor.minimap.enabled": false,
-  "chat.commandCenter.enabled": false
+
+  // --- Language-Specific Features ---
+
+  // ESLint validation for JS/TS
+  "eslint.validate": ["typescript", "javascript"],
+
+  // Python language server (Pylance)
+  "python.languageServer": "Pylance" // Explicitly ensure Pylance is used for Python language features
 }
