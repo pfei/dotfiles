@@ -229,3 +229,6 @@ export VIRTUALENVWRAPPER_PYTHON=$(pyenv which python) # Uses the active pyenv py
 source $(pyenv root)/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh
 # Alternative source (if the above path is not found)
 # source $(which virtualenvwrapper.sh)
+
+alias jrnl='~/src/scripts/journaling/journal.sh'
+alias jrnlpdf='~/src/scripts/journaling/md-to-pdf.sh'
