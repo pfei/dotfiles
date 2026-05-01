@@ -239,3 +239,6 @@ alias obs='flatpak run md.obsidian.Obsidian &'
 # Deno
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+
+# YouTube download alias (using android client bypass)
+alias bestvideo360='yt-dlp --cookies-from-browser chrome --extractor-args "youtube:player_client=android" -f "bestvideo[height<=360]+bestaudio/best[height<=360]"'
