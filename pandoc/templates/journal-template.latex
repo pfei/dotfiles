@@ -8,8 +8,16 @@
     colorlinks=true,
     linkcolor=blue,
     filecolor=magenta,
-    urlcolor=cyan,
+    urlcolor=cyan
 }
+
+\pagestyle{empty}
+
+% --- FIX for PANDOC \tightlist ERROR ---
+% This definition resolves the "Undefined control sequence" error for lists.
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% -----------------------------------------
 
 \begin{document}
 
