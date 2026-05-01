@@ -1,2 +1,16 @@
+# --- Generative files ---
 README.html
-README_files
+README_files/
+
+# --- Security & History  ---
+.zsh_history
+.bash_history
+.python_history
+.node_repl_history
+*.log
+*.env
+.DS_Store
+
+# --- Local Configs ---
+zsh/.zsh_local
+zsh/.secrets
