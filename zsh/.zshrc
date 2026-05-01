@@ -230,12 +230,6 @@ source $(pyenv root)/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh
 # Alternative source (if the above path is not found)
 # source $(which virtualenvwrapper.sh)
 
-alias jrnl='~/src/scripts/journaling/journal.sh'
-alias jrnlpdf='~/src/scripts/journaling/md-to-pdf.sh'
-
-# obsidian
-alias obs='flatpak run md.obsidian.Obsidian &'
-
 # Deno
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
