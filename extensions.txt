@@ -4,7 +4,6 @@ esbenp.prettier-vscode
 foxundermoon.shell-format
 matangover.mypy
 mechatroner.rainbow-csv
-ms-python.black-formatter
 ms-python.debugpy
 ms-python.python
 ms-python.vscode-pylance
@@ -16,3 +15,5 @@ ms-toolsai.vscode-jupyter-slideshow
 reditorsupport.r
 reditorsupport.r-syntax
 tamasfe.even-better-toml
+vscodevim.vim
+hoovercj.vscode-settings-cycler
