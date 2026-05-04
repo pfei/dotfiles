@@ -2,21 +2,26 @@
   {
     "key": "ctrl+alt+v",
     "command": "toggleVim",
-    "when": "editorTextFocus"
+    "when": "editorTextFocus",
   },
   {
     "key": "shift+alt+f",
     "command": "editor.action.formatDocument",
-    "when": "editorHasDocumentFormattingProvider && !editorReadonly"
+    "when": "editorHasDocumentFormattingProvider && !editorReadonly",
   },
   {
-    "key": "ctrl+k ctrl+shift+4", // Fold under cursor
+    "key": "ctrl+k ctrl+shift+4",
     "command": "editor.fold",
-    "when": "editorTextFocus"
+    "when": "editorTextFocus",
   },
   {
-    "key": "ctrl+k ctrl+shift+5", // Unfold under cursor
+    "key": "ctrl+k ctrl+shift+5",
     "command": "editor.unfold",
-    "when": "editorTextFocus"
-  }
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "ctrl+l",
+    "command": "settings.cycle.lineNumbers",
+    "when": "editorFocus",
+  },
 ]
