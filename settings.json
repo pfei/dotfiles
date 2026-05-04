@@ -1,58 +1,70 @@
 {
   // --- General Editor Settings ---
-  "editor.formatOnSave": true, // Global setting: automatically format code on save
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit", // ESLint auto-fix on save
-    "source.organizeImports": "explicit" // Automatically organize imports on save (for Python/JS/TS)
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit",
   },
-  "editor.minimap.enabled": false, // Disable minimap
-  "files.eol": "\n", // Ensure consistent line endings (LF for Linux/macOS)
+  "editor.minimap.enabled": false,
+  "files.eol": "\n",
+
+  // --- Spell Checker Settings (Global) ---
+  // Tells the spell checker which languages to check for globally
+  "cSpell.language": "en,fr",
+
+  // 1. Set "*" to false: This disables checking for ALL file types by default.
+  // 2. Set "markdown" to true: This explicitly re-enables checking ONLY for Markdown files.
+  // This combination ensures the 'ignore' language ID (.gitignore) is left unchecked.
+  "cSpell.enabledFileTypes": {
+    "*": false,
+    "markdown": true,
+  },
 
   // --- Chat/UI Settings ---
-  "chat.commandCenter.enabled": false, // Disable the chat command center
+  "chat.commandCenter.enabled": false,
 
   // --- Formatter Settings by Language ---
 
   // JSON files (with and without comments)
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
 
   // JavaScript & TypeScript files
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
 
   // HTML & CSS files
   "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
 
   // Shell Script files
   "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
+    "editor.defaultFormatter": "foxundermoon.shell-format",
   },
 
   // Python files
   "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff" // Set Ruff as the default formatter for .py files
+    "editor.defaultFormatter": "charliermarsh.ruff",
   },
 
   // Jupyter Notebook Python code cells
   "[jupyter]": {
-    "editor.defaultFormatter": "charliermarsh.ruff" // Set Ruff as the default formatter for notebook cells
+    "editor.defaultFormatter": "charliermarsh.ruff",
   },
 
   // --- Language-Specific Features ---
@@ -61,5 +73,24 @@
   "eslint.validate": ["typescript", "javascript"],
 
   // Python language server (Pylance)
-  "python.languageServer": "Pylance" // Explicitly ensure Pylance is used for Python language features
+  "python.languageServer": "Pylance",
+
+  // --- Markdown-Specific Settings ---
+  "[markdown]": {
+    "editor.wordWrap": "on",
+  },
+  "cSpell.userWords": ["babélienne", "Ramonville", "Roustang", "S'assoir"],
+  "python.defaultInterpreterPath": "/usr/bin/python3",
+
+  // --- Settings Cycler ---
+  "settings.cycle": [
+    {
+      "id": "lineNumbers",
+      "values": [
+        { "editor.lineNumbers": "on" },
+        { "editor.lineNumbers": "off" },
+      ],
+    },
+  ],
+  "editor.lineNumbers": "on",
 }
