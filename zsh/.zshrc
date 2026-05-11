@@ -238,25 +238,28 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 alias bestvideo360='yt-dlp --cookies-from-browser chrome --extractor-args "youtube:player_client=android" -f "bestvideo[height<=360]+bestaudio/best[height<=360]"'
 
 
-alias dumpcode='find . -type f \
-  -not -path "./.git/*" \
-  -not -path "*/node_modules/*" \
-  -not -path "*/dist/*" \
-  -not -path "*/__pycache__/*" \
-  -not -path "*/.venv/*" \
-  -not -path "*/venv/*" \
-  -not -path "*/*.egg-info/*" \
-  -exec sh -c '\''
-    file="$1"
-    mime=$(file --mime-type -b "$file")
-    case "$mime" in
-      text/*|application/json|application/javascript|application/x-sh|inode/x-empty)
-        printf "\n\n--- FILE: %s ---\n" "$file"
-        cat "$file" ;;
-      *)
-        printf "\n\n--- FILE: %s ---\n[binary: %s, skipped]\n" "$file" "$mime" ;;
-    esac
-  '\'' _ {} \; > ~/Downloads/full-codebase.txt'
+dumpcode() {
+  find . -type f \
+    -not -path "./.git/*" \
+    -not -path "*/node_modules/*" \
+    -not -path "*/dist/*" \
+    -not -path "*/__pycache__/*" \
+    -not -path "*/.venv/*" \
+    -not -path "*/venv/*" \
+    -not -name "poetry.lock" \
+    -not -name "package-lock.json" \
+    -exec sh -c '
+      file="$1"
+      mime=$(file --mime-type -b "$file")
+      case "$mime" in
+        text/*|application/json|application/javascript|application/x-sh|inode/x-empty)
+          printf "\n\n--- FILE: %s ---\n" "$file"
+          cat "$file" ;;
+        *)
+          printf "\n\n--- FILE: %s ---\n[binary: %s, skipped]\n" "$file" "$mime" ;;
+      esac
+    ' _ {} \; > ~/Downloads/full-codebase.txt
+}
 
 alias gitscan='git log -p --all \
   | grep -iE "(api_key|secret|password|token|private_key|-----BEGIN|ghp_|sk-|AKIA)" \
