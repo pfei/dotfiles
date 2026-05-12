@@ -2,7 +2,6 @@
 # Download video 360p with android client bypass
 alias bv360='yt-dlp \
   --cookies-from-browser chrome \
-  --remote-components ejs:github \
   -f "bestvideo[height<=360]+bestaudio/best[height<=360]"'
 
 # Extract best quality audio with metadata and thumbnail
