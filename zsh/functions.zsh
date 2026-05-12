@@ -1,25 +1,31 @@
 # History search
 function h() {
-    local default_lines=20
-    if [[ $# -eq 0 ]]; then
-        fc -l -$default_lines
-    elif [[ "$1" =~ ^-?[0-9]+$ ]]; then
-        fc -l -${1#-}
-    else
-        fc -l 1 | grep --color=auto -i "$@"
-    fi
+  local default_lines=20
+  if [[ $# -eq 0 ]]; then
+    fc -l -$default_lines
+  elif [[ "$1" =~ ^-?[0-9]+$ ]]; then
+    fc -l -${1#-}
+  else
+    fc -l 1 | grep --color=auto -i "$@"
+  fi
 }
 
 # Tmux Utilities
 function tmux_run_and_notify() {
   local initial_status=$(tmux show-option -gv status-right)
   local start_time=$(date +%s)
-  local command_output
-  command_output=$("$@")
+
+  # On redirige le flux de l'exécution vers stderr (>&2)
+  # Cela permet l'affichage en temps réel sans polluer stdout
+  eval "$@" >&2
+
   local command_exit_status=$?
   local end_time=$(date +%s)
   local duration=$((end_time - start_time))
-  tmux set-option -g status-right "#[fg=yellow,bold]Command completed in ${duration}s at $(date +%H:%M:%S)#[default]"
+
+  tmux set-option -g status-right "#[fg=yellow,bold]Done: ${duration}s | $(date +%H:%M:%S)#[default]"
+
+  # Ce echo reste sur stdout, donc il sera le SEUL capturé par OLD_STATUS=$(...)
   echo "$initial_status"
   return $command_exit_status
 }
@@ -35,12 +41,8 @@ function tmux_restore_status() {
 
 # File Utilities
 function lsym() {
-    local maxdepth=${1:-1}
-    find . -maxdepth $maxdepth -type l -printf '%p -> %l\n' | while read line; do
-        symlink=$(echo "$line" | cut -d' ' -f1)
-        target=$(echo "$line" | cut -d' ' -f3-)
-        echo -e "\033[36m$symlink\033[0m -> $target"
-    done
+  local maxdepth=${1:-1}
+  find . -maxdepth "$maxdepth" -type l -printf '\033[36m%p\033[0m -> %l\n'
 }
 
 function lst() {
@@ -49,6 +51,7 @@ function lst() {
 
 # Code Dumping for LLM
 dumpcode() {
+  local out="${1:-$HOME/Downloads/full-codebase.txt}" # chemin paramétrable
   find . -type f \
     -not -path "./.git/*" \
     -not -path "*/node_modules/*" \
@@ -68,5 +71,6 @@ dumpcode() {
         *)
           printf "\n\n--- FILE: %s ---\n[binary: %s, skipped]\n" "$file" "$mime" ;;
       esac
-    ' _ {} \; > ~/Downloads/full-codebase.txt
+    ' _ {} \; > "$out"
+  echo "Dumped to $out"
 }
