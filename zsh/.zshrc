@@ -25,7 +25,13 @@ eval "$(pyenv virtualenv-init -)"
 
 # --- Virtualenvwrapper ---
 export VIRTUALENVWRAPPER_PYTHON="$(pyenv which python)"
-source "$(pyenv root)/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh"
+_venvwrapper="$(pyenv root)/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh"
+if [ -f "$_venvwrapper" ]; then
+    source "$_venvwrapper"
+else
+    echo "⚠ virtualenvwrapper not found for pyenv version $(pyenv version-name)"
+fi
+unset _venvwrapper
 
 # --- Cursor UI ---
 cursor_color() {
