@@ -2,15 +2,20 @@
 README.html
 README_files/
 
-# --- Security & History  ---
-.zsh_history
-.bash_history
-.python_history
-.node_repl_history
-*.log
+# --- Security & Secrets ---
 *.env
-.DS_Store
-
-# --- Local Configs ---
 zsh/.zsh_local
 zsh/.secrets
+
+# --- Credentials & Keys ---
+*.pem
+*.key
+*.p12
+*.pfx
+**/.ssh/
+
+# --- Editors ---
+.vscode/
+.idea/
+*.swp
+*~
