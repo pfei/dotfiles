@@ -1,6 +1,6 @@
 # 🚀 .dotfiles
 
-My personal configuration files for a productive Linux development environment. This repository centralizes my settings for Zsh, Tmux, and Pandoc templates.
+My personal configuration files for a productive Linux development environment. This repository centralizes my settings for Zsh, Tmux, VS Code, and Pandoc templates.
 
 ## Features at a Glance
 
@@ -18,6 +18,13 @@ Terminal multiplexer configured for ergonomics and speed:
 - Navigation: Seamless pane switching with Alt + Arrow Keys.
 - Copy Mode: vi keybindings enabled with system clipboard integration (xclip).
 - Persistence: New panes and windows automatically open in the current working directory.
+
+### 💻 VS Code
+Unified and portable development environment:
+- Centralized Config: Settings, keybindings, and snippets grouped in a single directory.
+- Automation: Custom Zsh script for one-command deployment of links and extensions.
+- Smart Formatting: Auto-format shell scripts on save using shfmt.
+- Vim Integration: Optimized Vim keybindings and UI settings.
 
 ---
 
@@ -38,13 +45,17 @@ Terminal multiplexer configured for ergonomics and speed:
 
 ## 📂 Repository Structure
 
-```
 .
 ├── zsh/
 │   ├── .zshrc         # Main entry point
 │   ├── aliases.zsh    # Custom shortcuts
 │   ├── exports.zsh    # PATH and ENV variables
 │   └── functions.zsh  # Logic and utilities
+├── vscode/
+│   ├── setup.zsh      # Deployment script
+│   ├── settings.json  # VS Code user settings
+│   ├── extensions.txt # List of required extensions
+│   └── snippets/      # Custom code snippets
 ├── tmux/
 │   └── .tmux.conf     # Tmux configuration
 ├── pandoc/
@@ -52,23 +63,27 @@ Terminal multiplexer configured for ergonomics and speed:
 ├── themes/
 │   └── Dracula-Yad/   # Custom Dracula-Yad GTK theme
 └── LICENSE            # MIT License
-```
 
 
 ## ⚙️ Installation
 
-These dotfiles are managed via manual symbolic links for maximum transparency:
+### Step 1: Clone the repository
+git clone https://github.com/pfei/.dotfiles.git ~/.dotfiles
 
-- Step 1: Clone the repository
-  git clone https://github.com/pfei/.dotfiles.git ~/.dotfiles
+### Step 2: Install Oh My Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-- Step 2: Create Symbolic Links
-  ln -sf ~/.dotfiles/zsh/.zshrc ~/.zshrc
-  ln -sf ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
+### Step 3: Core Shell Setup
+ln -sf ~/.dotfiles/zsh/.zshrc ~/.zshrc
+ln -sf ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
+
+### Step 4: VS Code Setup
+Run the dedicated setup script to link configuration files and install extensions:
+./vscode/setup.zsh
 
 ---
 
 ## ⚖️ License
 Distributed under the MIT License. See the LICENSE file for more information.
 
-_Last updated: May 2026_
+Last updated: May 2026
