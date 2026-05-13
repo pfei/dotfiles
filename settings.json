@@ -97,5 +97,5 @@
       ],
     },
   ],
-  "editor.lineNumbers": "on",
+  "editor.lineNumbers": "off",
 }
