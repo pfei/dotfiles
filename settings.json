@@ -53,10 +53,15 @@
   },
 
   // Shell Script files
-  "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format",
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": ".*\\.zsh$|\\.zshrc$|zshrc$",
+        "isShell": true,
+        "cmd": "/usr/bin/shfmt -w -i 2 -bn -ci -sr ${file} && echo 'FORMATTED: ${file}'",
+      },
+    ],
   },
-
   // Python files
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
