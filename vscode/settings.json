@@ -3,7 +3,7 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "explicit",
+    "source.organizeImports": "explicit"
   },
   "editor.minimap.enabled": false,
   "files.eol": "\n",
@@ -17,7 +17,7 @@
   // This combination ensures the 'ignore' language ID (.gitignore) is left unchecked.
   "cSpell.enabledFileTypes": {
     "*": false,
-    "markdown": true,
+    "markdown": true
   },
 
   // --- Chat/UI Settings ---
@@ -27,29 +27,29 @@
 
   // JSON files (with and without comments)
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
   // JavaScript & TypeScript files
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
   // HTML & CSS files
   "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
   // Shell Script files
@@ -58,18 +58,18 @@
       {
         "match": ".*\\.zsh$|\\.zshrc$|zshrc$",
         "isShell": true,
-        "cmd": "/usr/bin/shfmt -w -i 2 -bn -ci -sr ${file} && echo 'FORMATTED: ${file}'",
-      },
-    ],
+        "cmd": "/usr/bin/shfmt -w -i 2 -bn -ci -sr ${file} && echo 'FORMATTED: ${file}'"
+      }
+    ]
   },
   // Python files
   "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.defaultFormatter": "charliermarsh.ruff"
   },
 
   // Jupyter Notebook Python code cells
   "[jupyter]": {
-    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.defaultFormatter": "charliermarsh.ruff"
   },
 
   // --- Language-Specific Features ---
@@ -82,10 +82,9 @@
 
   // --- Markdown-Specific Settings ---
   "[markdown]": {
-    "editor.wordWrap": "on",
+    "editor.wordWrap": "on"
   },
   "cSpell.userWords": ["babélienne", "Ramonville", "Roustang", "S'assoir"],
-  "python.defaultInterpreterPath": "/usr/bin/python3",
 
   // --- Settings Cycler ---
   "settings.cycle": [
@@ -93,9 +92,9 @@
       "id": "lineNumbers",
       "values": [
         { "editor.lineNumbers": "on" },
-        { "editor.lineNumbers": "off" },
-      ],
-    },
+        { "editor.lineNumbers": "off" }
+      ]
+    }
   ],
-  "editor.lineNumbers": "off",
+  "editor.lineNumbers": "off"
 }
