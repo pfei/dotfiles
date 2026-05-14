@@ -1,4 +1,6 @@
 " --- GENERAL ---
+syntax on
+filetype plugin indent on
 set nocompatible            " Disable Vi compatibility
 set encoding=utf-8          " Set standard encoding
 set history=500             " Increase command history
