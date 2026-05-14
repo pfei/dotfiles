@@ -2,20 +2,27 @@
 @import "/home/pierre/.themes/Dracula/gtk-3.0/gtk.css";
 
 #yad-dialog-window {
-  background-color: blue; /* Dracula background */
-  border: 2px solid #bd93f9; /* Purple border */
-  font-size: 16px; /* Increase base font size for the entire dialog */
+  /* Use Dracula background for comfort */
+  background-color: #282a36;
+  /* Thick Cyan border to make the notification pop */
+  border: 6px solid #8be9fd;
+  font-size: 16px;
 }
 
 #yad-dialog-label {
-  color: #ff79c6;
+  /* Yellow for maximum readability on dark background */
+  color: #f1fa8c;
   font-weight: bold;
-  font-size: 30px; /* Larger text for labels */
+  font-size: 30px;
+  padding: 20px;
 }
 
 #yad-dialog-button {
-  background-color: #44475a; /* Dracula selection color */
-  color: pink; /* Dracula foreground */
-  font-size: 16px; /* Larger text for buttons */
-  padding: 30px 40px; /* Increase button size */
+  /* High-contrast button using Dracula Purple */
+  background-color: #bd93f9;
+  /* Dark text on light button for clarity */
+  color: #282a36;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 20px 40px;
 }
