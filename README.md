@@ -95,6 +95,15 @@ Run the dedicated setup script to link configuration files and install extension
 ./vscode/setup.zsh
 ```
 
+### 🧬 Software Prerequisites
+
+This setup automates configuration but assumes some binaries are present:
+
+* **Helix**: Download the [AppImage](https://github.com/helix-editor/helix/releases) and place it in `~/.local/bin/`. 
+  * The setup script will automatically symlink `helix-*-x86_64.AppImage` to `hx`.
+* **Yad**: Required for custom notifications (`sudo apt install yad` on Debian/Ubuntu).
+
+
 ---
 
 ## ⚖️ License
