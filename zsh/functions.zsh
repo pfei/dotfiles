@@ -51,8 +51,9 @@ function lst() {
 
 # Code Dumping for LLM
 dumpcode() {
-  local out="${1:-$HOME/Downloads/full-codebase.txt}" # chemin paramétrable
+  local out="${1:-$HOME/Downloads/full-codebase.txt}"
   find . -type f \
+    -not -path "$out" \
     -not -path "./.git/*" \
     -not -path "*/node_modules/*" \
     -not -path "*/dist/*" \
