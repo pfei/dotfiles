@@ -3,9 +3,9 @@ export ZSH_CONFIG_DIR="$HOME/.dotfiles/zsh"
 
 # --- Theme Selection ---
 if [[ -f /etc/is_server ]]; then
-    ZSH_THEME="refined"
+  ZSH_THEME="refined"
 else
-    ZSH_THEME="arrow"
+  ZSH_THEME="arrow"
 fi
 
 # --- Plugins ---
@@ -23,26 +23,29 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# --- Pipx ---
+export PIPX_DEFAULT_PYTHON="$(pyenv which python)"
+
 # --- Virtualenvwrapper ---
 export VIRTUALENVWRAPPER_PYTHON="$(pyenv which python)"
 _venvwrapper="$(pyenv root)/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh"
 if [ -f "$_venvwrapper" ]; then
-    source "$_venvwrapper"
+  source "$_venvwrapper"
 else
-    echo "⚠ virtualenvwrapper not found for pyenv version $(pyenv version-name)"
+  echo "⚠ virtualenvwrapper not found for pyenv version $(pyenv version-name)"
 fi
 unset _venvwrapper
 
 # --- Cursor UI ---
 cursor_color() {
-    echo -ne '\e]12;#F9E2AE\a'
-    echo -ne '\e[4 q'
+  echo -ne '\e]12;#F9E2AE\a'
+  echo -ne '\e[4 q'
 }
 
 precmd_functions+=(cursor_color)
 
 zle-line-finish() {
-    echo -ne '\e[0 q'
+  echo -ne '\e[0 q'
 }
 
 zle -N zle-line-finish

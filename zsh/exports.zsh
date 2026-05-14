@@ -10,10 +10,9 @@ export NVM_DIR="$HOME/.nvm"
 # Go
 export PATH=$PATH:/usr/local/go/bin:~/go/bin
 
-# Pyenv & Pipx
+# Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-export PIPX_DEFAULT_PYTHON="$(pyenv which python)"
 
 # Deno
 export DENO_INSTALL="$HOME/.deno"
