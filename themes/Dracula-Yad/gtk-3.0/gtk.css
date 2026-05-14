@@ -1,5 +1,6 @@
 /* Import the original Dracula theme as base */
-@import "/home/pierre/.themes/Dracula/gtk-3.0/gtk.css";
+/* 1:gtk-3.0 -> 2:Dracula-Yad -> 3:themes -> 4:.dotfiles -> 5:HOME */
+@import url("../../../../.themes/Dracula/gtk-3.0/gtk.css");
 
 #yad-dialog-window {
   /* Use Dracula background for comfort */
