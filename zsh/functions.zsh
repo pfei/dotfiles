@@ -15,9 +15,9 @@ function tmux_run_and_notify() {
   local initial_status=$(tmux show-option -gv status-right)
   local start_time=$(date +%s)
 
-  # On redirige le flux de l'exécution vers stderr (>&2)
-  # Cela permet l'affichage en temps réel sans polluer stdout
-  eval "$@" >&2
+  # Execute the command directly and redirect output to stderr.
+  # This allows real-time display without polluting stdout.
+  "$@" >&2
 
   local command_exit_status=$?
   local end_time=$(date +%s)
@@ -25,7 +25,7 @@ function tmux_run_and_notify() {
 
   tmux set-option -g status-right "#[fg=yellow,bold]Done: ${duration}s | $(date +%H:%M:%S)#[default]"
 
-  # Ce echo reste sur stdout, donc il sera le SEUL capturé par OLD_STATUS=$(...)
+  # This echo stays on stdout, so it will be the ONLY one captured by OLD_STATUS=$(...)
   echo "$initial_status"
   return $command_exit_status
 }
