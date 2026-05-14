@@ -38,3 +38,7 @@ nnoremap <leader><CR> :noh<CR>
 
 " Quick save with Space + w
 nnoremap <leader>w :w<CR>
+
+" --- SPECIFIC OVERRIDES ---
+" Specialized settings for Git commits
+autocmd FileType gitcommit setlocal norelativenumber nonumber nocursorline
