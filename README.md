@@ -49,7 +49,7 @@ Unified and portable development environment:
 
 
 ## 📂 Repository Structure
-
+```
 .
 ├── zsh/
 │   ├── .zshrc         # Main entry point
@@ -68,23 +68,32 @@ Unified and portable development environment:
 ├── themes/
 │   └── Dracula-Yad/   # Custom Dracula-Yad GTK theme
 └── LICENSE            # MIT License
+```
 
 
 ## ⚙️ Installation
 
 ### Step 1: Clone the repository
+```
 git clone https://github.com/pfei/.dotfiles.git ~/.dotfiles
+```
 
 ### Step 2: Install Oh My Zsh
+```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
 ### Step 3: Core Shell Setup
+```
 ln -sf ~/.dotfiles/zsh/.zshrc ~/.zshrc
 ln -sf ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
+```
 
 ### Step 4: VS Code Setup
 Run the dedicated setup script to link configuration files and install extensions:
+```
 ./vscode/setup.zsh
+```
 
 ---
 
