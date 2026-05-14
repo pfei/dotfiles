@@ -22,3 +22,6 @@ alias copy='xclip -selection clipboard'
 alias tomate="node $HOME/src/tomate-cli/dist/main.js"
 alias trn='tmux_run_and_notify'
 alias trs='tmux_restore_status'
+
+# Helix Editor (AppImage)
+alias hx='$HOME/.local/bin/helix-25.07.1-x86_64.AppImage'

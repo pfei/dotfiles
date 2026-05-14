@@ -26,6 +26,11 @@ Unified and portable development environment:
 - Smart Formatting: Auto-format shell scripts on save using shfmt.
 - Vim Integration: Optimized Vim keybindings and UI settings.
 
+### Helix 
+- **Configuration**: `helix/config.toml` (symlinked to `~/.config/helix/config.toml`)
+- **Alias**: `hx` (defined in `zsh/aliases.zsh`)
+- **Hidden Files**: Managed via `.ignore` to ensure dotfiles are visible in the file picker (`Space + f`).
+
 ---
 
 ## 🛠️ Custom Functions & Aliases
