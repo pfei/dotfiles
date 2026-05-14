@@ -53,5 +53,7 @@ zle -N zle-line-finish
 cursor_color
 
 # --- Autoloads ---
+# Load Google API Key from ~/.google_api_key via a local function
+# This expects ~/.zsh_autoload_functions/load_google_api_key to exist
 fpath=(~/.zsh_autoload_functions $fpath)
 autoload -Uz load_google_api_key
