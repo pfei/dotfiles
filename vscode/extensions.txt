@@ -1,7 +1,7 @@
 charliermarsh.ruff
 dbaeumer.vscode-eslint
 esbenp.prettier-vscode
-foxundermoon.shell-format
+emeraldwalk.runonsave
 matangover.mypy
 mechatroner.rainbow-csv
 ms-python.debugpy
@@ -17,3 +17,5 @@ reditorsupport.r-syntax
 tamasfe.even-better-toml
 vscodevim.vim
 hoovercj.vscode-settings-cycler
+streetsidesoftware.code-spell-checker
+streetsidesoftware.code-spell-checker-french
