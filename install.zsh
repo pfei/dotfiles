@@ -6,7 +6,7 @@ DOTFILES_DIR="${0:a:h}"
 echo "🏗️  Starting Global Dotfiles Installation..."
 
 # List of modules to setup
-configs=("zsh" "vscode" "helix" "vim")
+configs=("zsh" "tmux" "vscode" "helix" "vim" "pandoc" "themes")
 
 for config in $configs; do
   SETUP_SCRIPT="$DOTFILES_DIR/$config/setup.zsh"
