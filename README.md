@@ -82,7 +82,7 @@ Terminal multiplexer configured for ergonomics and speed:
 - `lsym`: Lists symlinks in current directory with color-coded targets.
 - `lst`: Shows the 5 most recently modified files.
 - `dumpcode`: Dumps the full codebase to a text file for LLM analysis, skipping locks and binaries.
-
+- `gitscan`: Scans git history for secrets using `gitleaks`. It runs in redacted mode to safely display results on public screens.
 
 ### Workflow & Multimedia
 - `trn` / `trs`: Run a command and display its duration in the Tmux status bar.

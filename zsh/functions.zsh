@@ -75,3 +75,16 @@ dumpcode() {
     ' _ {} \; > "$out"
   echo "Dumped to $out"
 }
+
+# Scan git history for secrets
+gitscan() {
+  if ! command -v gitleaks &> /dev/null; then
+    echo "❌ gitleaks missing."
+    return 1
+  fi
+
+  echo "🔍 Scanning repository..."
+  # -v: verbose, --no-banner: cleaner output
+  # --redact: hide secrets in output (safer for public)
+  gitleaks detect -v --no-banner --redact
+}
