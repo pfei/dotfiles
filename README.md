@@ -9,11 +9,17 @@ This repository centralizes my settings for Zsh, Tmux, VS Code, Helix, Vim, and 
 Before running the automation, ensure the following are installed:
 
 ```bash
-# Essential system packages
-sudo apt update && sudo apt install -y curl git zsh tmux xclip yad shfmt
+# Essential system packages & Python build dependencies
+sudo apt update && sudo apt install -y curl git zsh tmux xclip yad shfmt \
+build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev \
+libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev \
+libxmlsec1-dev libffi-dev liblzma-dev
 
 # Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Pyenv & plugins
+curl https://pyenv.run | bash
 
 # Helix Editor (AppImage)
 # Download from https://github.com/helix-editor/helix/releases
