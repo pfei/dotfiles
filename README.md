@@ -1,112 +1,134 @@
 # 🚀 .dotfiles
 
-My personal configuration files for a productive Linux development environment. This repository centralizes my settings for Zsh, Tmux, VS Code, and Pandoc templates.
+My personal configuration files for a productive Linux development environment.
+This repository centralizes my settings for Zsh, Tmux, VS Code, Helix, Vim, and Pandoc.
+
+
+## 🛠️ Manual Prerequisites
+
+Before running the automation, ensure the following are installed:
+
+```bash
+# Essential system packages
+sudo apt update && sudo apt install -y curl git zsh tmux xclip yad shfmt
+
+# Oh My Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Helix Editor (AppImage)
+# Download from https://github.com/helix-editor/helix/releases
+# Place the AppImage in ~/.local/bin/ — setup will symlink it to `hx`
+mkdir -p ~/.local/bin
+```
+
+
+## ⚙️ Installation
+
+```bash
+git clone https://github.com/pfei/.dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+chmod +x install.zsh
+./install.zsh
+```
+
+The script iterates over all modules (`zsh`, `tmux`, `vscode`, `helix`, `vim`, `pandoc`, `themes`) and runs each `setup.zsh` automatically.
+
 
 ## Features at a Glance
 
 ### 🐚 Zsh (Oh My Zsh)
-A modular and powerhouse Zsh setup with dynamic environment handling:
-- Modular Architecture: Configuration split into exports, aliases, and functions for better maintainability.
-- Adaptive Themes: Automatically switches to the refined theme on servers and uses arrow for local sessions.
-- Language Integration: Full support for nvm, pyenv, Go, and Deno.
-- Python Workflow: Seamless virtualenvwrapper integration via pyenv.
-- UI Enhancements: Custom steady yellow underline cursor that resets on exit.
+A modular Zsh setup with dynamic environment handling:
+- **Modular Architecture**: Configuration split into exports, aliases, and functions.
+- **Adaptive Themes**: Switches to `refined` on servers, `arrow` locally.
+- **Language Integration**: nvm, pyenv, Go, Deno.
+- **Python Workflow**: pyenv for Python version management, virtualenvwrapper for lightweight virtual environments..
+- **UI**: Custom steady yellow underline cursor that resets on exit.
 
 ### 🖥️ Tmux
 Terminal multiplexer configured for ergonomics and speed:
-- Prefix: Remapped to Ctrl-a for easier reach.
-- Navigation: Seamless pane switching with Alt + Arrow Keys.
-- Copy Mode: vi keybindings enabled with system clipboard integration (xclip).
-- Persistence: New panes and windows automatically open in the current working directory.
+- **Prefix**: Remapped to `Ctrl-a`.
+- **Navigation**: Pane switching with `Alt + Arrow Keys`, window switching with `Ctrl + PageUp/Down`.
+- **Copy Mode**: vi keybindings with system clipboard integration (xclip).
+- **Persistence**: New panes/windows open in the current working directory.
 
 ### 💻 VS Code
-Unified and portable development environment:
-- Centralized Config: Settings, keybindings, and snippets grouped in a single directory.
-- Automation: Custom Zsh script for one-command deployment of links and extensions.
-- Smart Formatting: Auto-format shell scripts on save using shfmt.
-- Vim Integration: Optimized Vim keybindings and UI settings.
+- **Centralized Config**: Settings, keybindings, and snippets in one directory.
+- **Automation**: One-command deployment of symlinks and extensions.
+- **Smart Formatting**: Auto-format shell scripts on save via shfmt, Python via Ruff.
+- **Vim Integration**: Optimized Vim keybindings via vscodevim.
 
-### Helix 
-- **Configuration**: `helix/config.toml` (symlinked to `~/.config/helix/config.toml`)
-- **Alias**: `hx` (defined in `zsh/aliases.zsh`)
-- **Hidden Files**: Managed via `.ignore` to ensure dotfiles are visible in the file picker (`Space + f`).
+### 🪨 Helix
+- **Configuration**: `helix/config.toml` → `~/.config/helix/config.toml`
+- **AppImage**: `hx` symlink created automatically from `helix-*-x86_64.AppImage` in `~/.local/bin/`
+- **Hidden Files**: `.ignore` ensures dotfiles are visible in the file picker (`Space + f`).
+
+### 📝 Vim
+- **Configuration**: `vim/.vimrc` → `~/.vimrc`
+- Relative line numbers, persistent undo, Space as leader key.
+
+### 📄 Pandoc
+- **Templates**: `pandoc/templates/` → `~/.local/share/pandoc/templates/`
+- Clean LaTeX journal template for PDF export.
+### 🎨 Themes
+- **Dracula-Yad**: Custom Dracula variant for `yad` dialogs → `~/.themes/`
 
 ---
+
 
 ## 🛠️ Custom Functions & Aliases
 
 ### Shell Utilities
-- h: Advanced history search with optional line count or keyword filtering.
-- lsym: Lists all symbolic links in the directory with color-coded targets.
-- lst: Displays the 5 most recently modified files.
-- dumpcode: Dumps the codebase into a text file for LLM analysis, automatically excluding locks and binaries.
+- `h`: History search — no args shows last 20, number shows N lines, string greps.
+- `lsym`: Lists symlinks in current directory with color-coded targets.
+- `lst`: Shows the 5 most recently modified files.
+- `dumpcode`: Dumps the full codebase to a text file for LLM analysis, skipping locks and binaries.
+
 
 ### Workflow & Multimedia
-- trn / trs: Execute commands with duration notifications in the Tmux status bar.
-- bv360: Optimized yt-dlp alias to download YouTube videos at 360p.
-- yta: One-command YouTube to high-quality audio extraction with metadata and $HOME/Downloads output.
-- gitscan: Quick security check for leaked secrets in the git history.
+- `trn` / `trs`: Run a command and display its duration in the Tmux status bar.
+- `bv360`: Download a YouTube video at 360p via yt-dlp.
+- `yta`: Extract best-quality audio from YouTube with metadata and thumbnail.
+
 
 
 ## 📂 Repository Structure
 ```
 .
 ├── zsh/
-│   ├── .zshrc         # Main entry point
-│   ├── aliases.zsh    # Custom shortcuts
-│   ├── exports.zsh    # PATH and ENV variables
-│   └── functions.zsh  # Logic and utilities
-├── vscode/
-│   ├── setup.zsh      # Deployment script
-│   ├── settings.json  # VS Code user settings
-│   ├── extensions.txt # List of required extensions
-│   └── snippets/      # Custom code snippets
+│   ├── .zshrc              # Main entry point
+│   ├── aliases.zsh         # Custom shortcuts
+│   ├── exports.zsh         # PATH and env variables
+│   ├── functions.zsh       # Utilities and helpers
+│   └── setup.zsh           # Symlinks + autoload stub
 ├── tmux/
-│   └── .tmux.conf     # Tmux configuration
+│   ├── .tmux.conf          # Tmux configuration
+│   └── setup.zsh
+├── vscode/
+│   ├── settings.json
+│   ├── keybindings.json
+│   ├── extensions.txt
+│   ├── snippets/
+│   └── setup.zsh
+├── helix/
+│   ├── config.toml
+│   └── setup.zsh           # Symlinks config + hx AppImage
+├── vim/
+│   ├── .vimrc
+│   └── setup.zsh
 ├── pandoc/
-│   └── templates/     # LaTeX journal templates
+│   ├── templates/          # LaTeX templates
+│   └── setup.zsh
 ├── themes/
-│   └── Dracula-Yad/   # Custom Dracula-Yad GTK theme
-└── LICENSE            # MIT License
+│   ├── Dracula-Yad/        # Custom yad GTK theme
+│   └── setup.zsh
+├── install.zsh             # Global installer
+├── .ignore                 # Show dotfiles in Helix file picker
+└── LICENSE
 ```
-
-
-## ⚙️ Installation
-
-### Step 1: Clone the repository
-```
-git clone https://github.com/pfei/.dotfiles.git ~/.dotfiles
-```
-
-### Step 2: Install Oh My Zsh
-```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-### Step 3: Core Shell Setup
-```
-ln -sf ~/.dotfiles/zsh/.zshrc ~/.zshrc
-ln -sf ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
-```
-
-### Step 4: VS Code Setup
-Run the dedicated setup script to link configuration files and install extensions:
-```
-./vscode/setup.zsh
-```
-
-### 🧬 Software Prerequisites
-
-This setup automates configuration but assumes some binaries are present:
-
-* **Helix**: Download the [AppImage](https://github.com/helix-editor/helix/releases) and place it in `~/.local/bin/`. 
-  * The setup script will automatically symlink `helix-*-x86_64.AppImage` to `hx`.
-* **Yad**: Required for custom notifications (`sudo apt install yad` on Debian/Ubuntu).
-
 
 ---
 
 ## ⚖️ License
-Distributed under the MIT License. See the LICENSE file for more information.
+MIT License — see LICENSE for details.
 
 Last updated: May 2026
