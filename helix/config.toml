@@ -1,3 +1,5 @@
+theme = "my_mocha"
+
 [editor]
 line-number = "relative"
 cursorline = true
