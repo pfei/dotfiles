@@ -49,33 +49,6 @@ function lst() {
   ls -t --color=always | head -n ${1:-5}
 }
 
-# Code Dumping for LLM
-dumpcode() {
-  local out="${1:-$HOME/Downloads/full-codebase.txt}"
-  find . -type f \
-    -not -path "$out" \
-    -not -path "./.git/*" \
-    -not -path "*/node_modules/*" \
-    -not -path "*/dist/*" \
-    -not -path "*/__pycache__/*" \
-    -not -path "*/.venv/*" \
-    -not -path "*/venv/*" \
-    -not -name "poetry.lock" \
-    -not -name "package-lock.json" \
-    -exec sh -c '
-      file="$1"
-      mime=$(file --mime-type -b "$file")
-      case "$mime" in
-        text/*|application/json|application/javascript|application/x-sh|inode/x-empty)
-          printf "\n\n--- FILE: %s ---\n" "$file"
-          cat "$file" ;;
-        *)
-          printf "\n\n--- FILE: %s ---\n[binary: %s, skipped]\n" "$file" "$mime" ;;
-      esac
-    ' _ {} \; > "$out"
-  echo "Dumped to $out"
-}
-
 # Scan git history for secrets
 gitscan() {
   if ! command -v gitleaks &> /dev/null; then

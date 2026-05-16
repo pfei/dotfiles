@@ -19,4 +19,18 @@ for config in $configs; do
   fi
 done
 
+# Ensure the local bin directory exists
+mkdir -p "$HOME/.local/bin"
+
+# Automate symlinks for all user binaries/scripts
+if [[ -d "./.local/bin" ]]; then
+  for bin_file in ./.local/bin/*; do
+    if [[ -f "$bin_file" ]]; then
+      local bin_name=$(basename "$bin_file")
+      # -f forces overwriting existing symlinks, -s makes it symbolic
+      ln -sf "$HOME/.dotfiles/.local/bin/$bin_name" "$HOME/.local/bin/$bin_name"
+    fi
+  done
+fi
+
 echo "🎉 Installation complete!"
