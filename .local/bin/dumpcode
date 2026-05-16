@@ -6,7 +6,17 @@ from pathlib import Path
 
 
 def get_ignore_rules():
-    ignore_rules = {".git"}
+    # Core directories and Python development caches to always skip
+    ignore_rules = {
+        ".git",
+        ".venv",
+        "venv",
+        "env",
+        ".pytest_cache",
+        ".mypy_cache",
+        "__pycache__",
+        "data",
+    }
 
     # Read .gitignore rules
     if os.path.exists(".gitignore"):
@@ -29,7 +39,6 @@ def get_ignore_rules():
 
 
 def should_ignore(target_path, ignore_rules):
-    # Convert to a clean relative string path (e.g., 'themes/Dracula')
     try:
         rel_path = target_path.relative_to(Path(".")).as_posix()
     except ValueError:
@@ -38,7 +47,6 @@ def should_ignore(target_path, ignore_rules):
     if rel_path == ".":
         return False
 
-    # Check if the path matches or starts with any ignore rule
     for rule in ignore_rules:
         if rel_path == rule or rel_path.startswith(rule + "/"):
             return True
@@ -46,7 +54,7 @@ def should_ignore(target_path, ignore_rules):
 
 
 def is_text_file(file_path):
-    # Skip assets and image extensions explicitly
+    # Explicitly exclude data assets, notebook structures, and database dumps
     if file_path.suffix.lower() in [
         ".svg",
         ".png",
@@ -56,13 +64,21 @@ def is_text_file(file_path):
         ".ico",
         ".woff",
         ".woff2",
+        ".ipynb",
+        ".csv",
+        ".tsv",
+        ".sqlite",
+        ".db",
     ]:
         return False
 
+    # Guard clause: avoid reading massive text/json data dumps (> 1 MB)
     try:
+        if file_path.stat().st_size > 1024 * 1024:
+            return False
         if file_path.stat().st_size == 0:
             return True
-    except FileNotFoundError:
+    except (FileNotFoundError, PermissionError):
         return False
 
     mime, _ = mimetypes.guess_type(str(file_path))
@@ -88,7 +104,7 @@ def main():
         for root, dirs, files in os.walk("."):
             root_path = Path(root)
 
-            # Prune directories in-place so os.walk doesn't dive into ignored ones
+            # Prune directories in-place to optimize traversal speed
             dirs[:] = [
                 d
                 for d in dirs
