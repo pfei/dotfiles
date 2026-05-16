@@ -25,3 +25,16 @@ gsettings set org.mate.interface toolbar-icons-size 'large-toolbar'
 # Apply MATE window manager (Marco) settings
 gsettings set org.mate.Marco.general theme 'Dracula'
 echo "✅ MATE settings applied."
+
+echo "🖼️ Applying wallpaper settings..."
+# Configure background to use the custom 1-pixel Dracula image
+gsettings set org.mate.background picture-filename "$DOTFILES_THEMES_DIR/one-pixel-dracula.bmp"
+gsettings set org.mate.background picture-options 'wallpaper'
+gsettings set org.mate.background color-shading-type 'solid'
+gsettings set org.mate.background draw-background true
+gsettings set org.mate.background background-fade true
+gsettings set org.mate.background picture-opacity 100
+gsettings set org.mate.background primary-color 'rgb(0,0,0)'
+gsettings set org.mate.background secondary-color 'rgb(98,127,90)'
+gsettings set org.mate.background show-desktop-icons true
+echo "✅ Wallpaper settings applied."
