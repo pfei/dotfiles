@@ -1,0 +1,9 @@
+[init]
+    defaultBranch = main
+
+[alias]
+    lg = log \
+        --graph \
+        --decorate \
+        --date=short \
+        --pretty=format:'%C(yellow)%h %C(blue)%ad %C(reset)%s %C(green)%d'
