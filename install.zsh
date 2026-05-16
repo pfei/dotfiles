@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # Root directory of your dotfiles
 DOTFILES_DIR="${0:a:h}"
