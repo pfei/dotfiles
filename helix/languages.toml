@@ -2,3 +2,8 @@
 name = "bash"
 auto-format = true
 formatter = { command = "shfmt", args = ["-i", "2", "-ci", "-sr"] }
+
+[[language]]
+name = "python"
+auto-format = true
+formatter = { command = "ruff", args = ["format", "-"] }
