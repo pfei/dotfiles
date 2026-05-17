@@ -2,6 +2,7 @@
 echo "🔗 Linking Helix config..."
 mkdir -p "$HOME/.config/helix"
 ln -sf "${0:a:h}/config.toml" "$HOME/.config/helix/config.toml"
+ln -sf "${0:a:h}/languages.toml" "$HOME/.config/helix/languages.toml"
 
 # Set NULL_GLOB locally to avoid errors if no match is found
 # This is more shfmt-friendly than the (N) inline modifier
