@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import subprocess
 from pathlib import Path
 
 
@@ -31,18 +32,13 @@ def main():
             print(f"⏭️  Headless environment: Skipping GUI module ({config})")
             continue
 
-        # Look for the python setup script first, fallback to zsh if not migrated yet
         py_setup = dotfiles_dir / config / "setup.py"
-        zsh_setup = dotfiles_dir / config / "setup.zsh"
 
         if py_setup.exists():
-            print(f"─── Installing {config} (Python) ───")
-            os.system(f'python3 "{py_setup}"')
-        elif zsh_setup.exists():
-            print(f"─── Installing {config} (Zsh Legacy) ───")
-            os.system(f'zsh "{zsh_setup}"')
+            print(f"─── Installing {config} ───")
+            subprocess.run(["python3", str(py_setup)], check=False)
         else:
-            print(f"⚠️  No setup script found in {config}/")
+            print(f"⚠️  No setup.py script found in {config}/")
 
     # Automate symlinks for user binaries/scripts (~/.local/bin)
     local_bin_dir = home_dir / ".local" / "bin"
