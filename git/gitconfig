@@ -7,3 +7,6 @@
         --decorate \
         --date=short \
         --pretty=format:'%C(yellow)%h %C(blue)%ad %C(reset)%s %C(green)%d'
+
+[core]
+    editor = hx
