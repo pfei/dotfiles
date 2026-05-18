@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import shutil
 from pathlib import Path
 
@@ -9,7 +10,15 @@ def main():
     dotfiles_dir = Path(__file__).resolve().parent
     helix_config_dir = Path.home() / ".config" / "helix"
 
-    # 1. Ensure config directory exists
+    # 1. Handle idempotency for the config directory itself
+    if helix_config_dir.is_symlink():
+        # If it's a symlink pointing to dotfiles, we safely remove the link, NOT the files
+        helix_config_dir.unlink()
+    elif helix_config_dir.exists() and not helix_config_dir.is_dir():
+        # Safety check: if it's a file for some reason, remove it
+        helix_config_dir.unlink()
+
+    # Now we can safely create a real directory
     helix_config_dir.mkdir(parents=True, exist_ok=True)
 
     # 2. Link configuration files (config.toml, languages.toml)
@@ -18,6 +27,10 @@ def main():
         target = helix_config_dir / filename
 
         if source.exists():
+            # If the source itself became a broken symlink, skip or handle it
+            if source.is_symlink():
+                continue
+
             if target.is_symlink() or target.exists():
                 target.unlink()
             target.symlink_to(source)
@@ -27,11 +40,9 @@ def main():
     local_bin_dir = Path.home() / ".local" / "bin"
     hx_target = local_bin_dir / "hx"
 
-    # Find any helix AppImage in ~/.local/bin
     appimages = list(local_bin_dir.glob("helix-*-x86_64.AppImage"))
 
     if appimages:
-        # Sort to automatically take the highest version found
         target_appimage = sorted(appimages)[-1]
 
         if hx_target.is_symlink() or hx_target.exists():
