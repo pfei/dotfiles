@@ -54,6 +54,11 @@ A modular Zsh setup with dynamic environment handling:
 - **Python Workflow**: pyenv for Python version management, virtualenvwrapper for lightweight virtual environments..
 - **UI**: Custom steady yellow underline cursor that resets on exit.
 
+### 🔒 Local Overrides
+The `.zshrc` configuration dynamically checks for and sources `~/.zshrc.local` right before initializing
+the cursor UI. This provides a clean point of extension to inject private paths,
+professional/personal aliases, or specific overrides without polluting the public repository tracking.
+
 ### 🖥️ Tmux
 Terminal multiplexer configured for ergonomics and speed:
 - **Prefix**: Remapped to `Ctrl-a`.

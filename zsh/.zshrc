@@ -38,7 +38,17 @@ else
 fi
 unset _venvwrapper
 
-# --- Cursor UI ---
+# --- Autoloads ---
+fpath=(~/.zsh_autoload_functions $fpath)
+autoload -Uz load_google_api_key
+
+# --- Local Overrides ---
+# Load local/private configurations if present
+if [[ -f "$HOME/.zshrc.local" ]]; then
+    source "$HOME/.zshrc.local"
+fi
+
+# --- Cursor UI (Always Last) ---
 cursor_color() {
   echo -ne '\e]12;#F9E2AE\a'
   echo -ne '\e[4 q'
@@ -53,9 +63,3 @@ zle-line-finish() {
 zle -N zle-line-finish
 
 cursor_color
-
-# --- Autoloads ---
-# Load Google API Key from ~/.google_api_key via a local function
-# This expects ~/.zsh_autoload_functions/load_google_api_key to exist
-fpath=(~/.zsh_autoload_functions $fpath)
-autoload -Uz load_google_api_key
