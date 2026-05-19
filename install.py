@@ -16,6 +16,7 @@ def main():
 
     # Order of modules to install
     configs = [
+        "git",
         "zsh",
         "tmux",
         "vscode",
