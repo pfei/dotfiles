@@ -1,5 +1,7 @@
 export ZSH="$HOME/.oh-my-zsh"
-export ZSH_CONFIG_DIR="$HOME/.dotfiles/zsh"
+
+# Dynamically locate the zsh configuration directory, even behind a symlink
+export ZSH_CONFIG_DIR="${${(%):-%x}:A:h}"
 
 # --- Theme Selection ---
 if [[ -f /etc/is_server ]]; then

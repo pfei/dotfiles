@@ -1,4 +1,4 @@
-# 🚀 .dotfiles
+# 🚀 dotfiles
 
 My personal configuration files for a productive Linux development environment.
 This repository centralizes my settings for Zsh, Tmux, VS Code, Helix, Vim, and Pandoc.
@@ -30,14 +30,18 @@ mkdir -p ~/.local/bin
 
 ## ⚙️ Installation
 
+You can clone this repository anywhere (e.g., ~/src/dotfiles).
+The scripts adapt dynamically to create the proper symlinks in your $HOME.
+
+
 ```bash
-git clone https://github.com/pfei/.dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-chmod +x install.zsh
-./install.zsh
+git clone https://github.com/pfei/dotfiles.git ~/src/dotfiles
+cd ~/src/dotfiles
+./install.py
 ```
 
-The script iterates over all modules (`zsh`, `tmux`, `vscode`, `helix`, `vim`, `pandoc`, `themes`) and runs each `setup.zsh` automatically.
+The script iterates over all modules (`zsh`, `tmux`, `vscode`, `helix`, `vim`, `pandoc`, `themes`)
+and runs each `setup.py` automatically.
 
 
 ## Features at a Glance
@@ -105,29 +109,29 @@ Terminal multiplexer configured for ergonomics and speed:
 │   ├── aliases.zsh         # Custom shortcuts
 │   ├── exports.zsh         # PATH and env variables
 │   ├── functions.zsh       # Utilities and helpers
-│   └── setup.zsh           # Symlinks + autoload stub
+│   └── setup.py            # Symlinks + autoload stub
 ├── tmux/
 │   ├── .tmux.conf          # Tmux configuration
-│   └── setup.zsh
+│   └── setup.py
 ├── vscode/
 │   ├── settings.json
 │   ├── keybindings.json
 │   ├── extensions.txt
 │   ├── snippets/
-│   └── setup.zsh
+│   └── setup.py
 ├── helix/
 │   ├── config.toml
-│   └── setup.zsh           # Symlinks config + hx AppImage
+│   └── setup.py            # Symlinks config + hx AppImage
 ├── vim/
 │   ├── .vimrc
-│   └── setup.zsh
+│   └── setup.py
 ├── pandoc/
 │   ├── templates/          # LaTeX templates
-│   └── setup.zsh
+│   └── setup.py
 ├── themes/
 │   ├── Dracula-Yad/        # Custom yad GTK theme
-│   └── setup.zsh
-├── install.zsh             # Global installer
+│   └── setup.py
+├── install.py              # Global installer
 ├── .ignore                 # Show dotfiles in Helix file picker
 └── LICENSE
 ```
