@@ -1,7 +1,7 @@
 theme = "my_mocha"
 
 [editor]
-line-number = "relative"
+line-number = "absolute"
 cursorline = true
 color-modes = true
 
@@ -13,3 +13,9 @@ select = "underline"
 [editor.file-picker]
 hidden = true
 git-ignore = false
+
+[keys.normal.space]
+# 'space + n' pour masquer les numéros (n comme "No numbers")
+n = [":set gutters.layout [\"diagnostics\",\"spacer\",\"diff\"]"]
+# 'space + l' pour réafficher les numéros (l comme "Line numbers")
+l = [":set gutters.layout [\"diagnostics\",\"line-numbers\",\"spacer\",\"diff\"]"]
