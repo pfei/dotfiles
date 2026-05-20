@@ -1,3 +1,9 @@
+[language-server.ruff-lsp]
+command = "ruff-lsp"
+
+[language-server.jedi-language-server]
+command = "jedi-language-server"
+
 [[language]]
 name = "bash"
 auto-format = true
@@ -7,3 +13,19 @@ formatter = { command = "shfmt", args = ["-i", "2", "-ci", "-sr"] }
 name = "python"
 auto-format = true
 formatter = { command = "ruff", args = ["format", "-"] }
+language-servers = ["ruff-lsp", "jedi-language-server"]
+
+[language.debugger]
+name = "debugpy"
+transport = "stdio"
+command = "python3"
+args = ["-m", "debugpy.adapter"]
+
+[[language.debugger.templates]]
+name = "source"
+request = "launch"
+completion = [{ name = "entrypoint", completion = "filename", default = "." }]
+
+[language.debugger.templates.args]
+mode = "debug"
+program = "{0}"
