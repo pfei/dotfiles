@@ -54,7 +54,18 @@ def should_ignore(target_path, ignore_rules):
 
 
 def is_text_file(file_path):
-    # Explicitly exclude data assets, notebook structures, and database dumps
+    # 1. Prioritize dotfiles and specific config files often ignored by MIME systems
+    if file_path.name in [
+        ".zshrc",
+        ".tmux.conf",
+        ".bashrc",
+        ".vimrc",
+        "aliases.zsh",
+        "functions.zsh",
+    ] or file_path.suffix.lower() in [".conf", ".sh", ".zsh"]:
+        return True
+
+    # 2. Explicitly exclude data assets, notebook structures, and database dumps
     if file_path.suffix.lower() in [
         ".svg",
         ".png",
@@ -72,23 +83,36 @@ def is_text_file(file_path):
     ]:
         return False
 
-    # Guard clause: avoid reading massive text/json data dumps (> 1 MB)
+    # 3. Guard clause: avoid reading massive text/json data dumps (> 1 MB)
     try:
-        if file_path.stat().st_size > 1024 * 1024:
+        stats = file_path.stat()
+        if stats.st_size > 1024 * 1024:
             return False
-        if file_path.stat().st_size == 0:
+        if stats.st_size == 0:
             return True
     except (FileNotFoundError, PermissionError):
         return False
 
+    # 4. Standard MIME type check
     mime, _ = mimetypes.guess_type(str(file_path))
     if mime:
-        return mime.startswith("text/") or mime in [
+        if mime.startswith("text/") or mime in [
             "application/json",
             "application/javascript",
             "application/x-sh",
-        ]
-    return False
+        ]:
+            return True
+
+    # 5. Robust fallback: read as binary to check for null bytes (indicates binary)
+    try:
+        with open(file_path, "rb") as f:
+            chunk = f.read(1024)
+            # If null byte found, it's definitely binary
+            if b"\x00" in chunk:
+                return False
+            return True
+    except Exception:
+        return False
 
 
 def main():
