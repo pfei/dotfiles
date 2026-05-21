@@ -25,6 +25,7 @@ def main():
         "pandoc",
         "themes",
         "mate-terminal",
+        "kitty",
     ]
     gui_only_modules = {"vscode", "themes", "mate-terminal"}
 
