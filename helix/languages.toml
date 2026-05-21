@@ -1,5 +1,6 @@
-[language-server.ruff-lsp]
-command = "ruff-lsp"
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
 
 [language-server.jedi-language-server]
 command = "jedi-language-server"
@@ -10,10 +11,16 @@ auto-format = true
 formatter = { command = "shfmt", args = ["-i", "2", "-ci", "-sr"] }
 
 [[language]]
+name = "markdown"
+auto-format = true
+language-servers = []
+formatter = { command = "mdformat", args = ["-"] }
+
+[[language]]
 name = "python"
 auto-format = true
 formatter = { command = "ruff", args = ["format", "-"] }
-language-servers = ["ruff-lsp", "jedi-language-server"]
+language-servers = ["ruff", "jedi-language-server"]
 
 [language.debugger]
 name = "debugpy"
