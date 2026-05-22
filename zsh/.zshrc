@@ -6,7 +6,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Dynamically locate the zsh config directory, even behind a symlink
 export ZSH_CONFIG_DIR="${${(%):-%x}:A:h}"
 
-# Fallback si un 'source ~/.zshrc' manuel dérègle le comportement de %x
+# Fallback : manual 'source ~/.zshrc' alters %x behavior
 [[ -f "$ZSH_CONFIG_DIR/exports.zsh" ]] || ZSH_CONFIG_DIR="$HOME/.dotfiles/zsh"
 
 # Theme: refined on servers, arrow on local machines
@@ -18,14 +18,19 @@ fi
 
 plugins=(git)
 
-# ==============================================================================
-# --- COMPINIT CACHE (saves ~200-400ms) ---
-# ==============================================================================
-# Prevent OMZ from running its own redundant security check
+# Prevent OMZ from running its own redundant or slow completion setups
 ZSH_DISABLE_COMPFIX="true"
 DISABLE_AUTO_UPDATE="true"
 
-# Activation du globbing avancé pour évaluer le cache sans forker de processus
+# Hint to Oh My Zsh that we are handling compinit manually and optimally
+# (This prevents OMZ from duplicating the compinit call)
+unsetopt MENU_COMPLETE
+setopt AUTO_MENU
+
+# ==============================================================================
+# --- COMPINIT CACHE (saves ~200-400ms) ---
+# ==============================================================================
+# Enable advanced globbing to check cache age without spawning processes
 setopt EXTENDED_GLOB
 
 autoload -Uz compinit
@@ -36,6 +41,7 @@ else
   compinit -C
 fi
 
+# Load Oh My Zsh framework (Will now safely reuse our cached compinit)
 source "$ZSH/oh-my-zsh.sh"
 
 # ==============================================================================
@@ -47,13 +53,10 @@ source "$ZSH_CONFIG_DIR/functions.zsh"
 # ==============================================================================
 # --- PYENV / VIRTUALENVWRAPPER (LAZY LOADING) ---
 # ==============================================================================
-# PYENV_ROOT and PATH are set eagerly in exports.zsh (no subprocess, no cost).
-# Everything else (pyenv init, virtualenv-init, virtualenvwrapper) is deferred
-# until the first real use of pyenv or a virtualenv command.
-
 _pyenv_lazy_init() {
-  # Destroy all stubs first to prevent any recursion
+  # Wipe out stubs and completion triggers to prevent conflicts
   unfunction pyenv workon mkvirtualenv rmvirtualenv lsvirtualenv cdvirtualenv 2>/dev/null
+  compdef -d workon mkvirtualenv rmvirtualenv lsvirtualenv cdvirtualenv 2>/dev/null
 
   eval "$(command pyenv init --path)"
   eval "$(command pyenv init -)"
@@ -76,14 +79,33 @@ _pyenv_lazy_init() {
   fi
 }
 
-# pyenv  → binary: use 'command' after init
-# workon etc. → shell functions loaded by virtualenvwrapper: plain call after unfunction is safe
+# Command stubs (Relies on Zsh native dynamic dispatch)
 pyenv()        { _pyenv_lazy_init; command pyenv "$@" }
 workon()       { _pyenv_lazy_init; workon "$@" }
 mkvirtualenv() { _pyenv_lazy_init; mkvirtualenv "$@" }
 rmvirtualenv() { _pyenv_lazy_init; rmvirtualenv "$@" }
 lsvirtualenv() { _pyenv_lazy_init; lsvirtualenv "$@" }
 cdvirtualenv() { _pyenv_lazy_init; cdvirtualenv "$@" }
+
+# --- NATIVE ZSH LAZY COMPLETION INTERCEPTOR ---
+_venvwrapper_lazy_complete() {
+  # Initialize virtualenvwrapper to load real completion functions
+  _pyenv_lazy_init
+
+  # Fetch the real completion function registered in Zsh $_comps associative array
+  local dispatch="${_comps[$words[1]]}"
+
+  if [[ -n "$dispatch" && "$dispatch" != "_venvwrapper_lazy_complete" ]]; then
+    # Delegate to the actual completion function (e.g. _virtualenvwrapper)
+    "$dispatch" "$@"
+  else
+    # Fallback if no specific completion is registered yet
+    _default "$@"
+  fi
+}
+
+# Bind the lazy completion interceptor to the stubs (SAFE: placed after OMZ init)
+compdef _venvwrapper_lazy_complete workon mkvirtualenv rmvirtualenv lsvirtualenv cdvirtualenv
 
 # ==============================================================================
 # --- AUTOLOADS ---
