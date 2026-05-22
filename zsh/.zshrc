@@ -43,7 +43,6 @@ source "$ZSH/oh-my-zsh.sh"
 # ==============================================================================
 source "$ZSH_CONFIG_DIR/exports.zsh"
 source "$ZSH_CONFIG_DIR/functions.zsh"
-source "$ZSH_CONFIG_DIR/aliases.zsh"
 
 # ==============================================================================
 # --- PYENV / VIRTUALENVWRAPPER (LAZY LOADING) ---
