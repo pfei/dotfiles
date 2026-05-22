@@ -36,3 +36,8 @@ completion = [{ name = "entrypoint", completion = "filename", default = "." }]
 [language.debugger.templates.args]
 mode = "debug"
 program = "{0}"
+
+[[language]]
+name = "json"
+auto-format = true
+formatter = { command = "jq", args = ["."] }
