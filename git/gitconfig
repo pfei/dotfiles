@@ -14,6 +14,10 @@
 [gpg]
     format = ssh
 
+[gpg "ssh"]
+    program = ssh-keygen
+    allowedSignersFile = ~/.ssh/allowed_signers
+
 [commit]
     gpgsign = true
 

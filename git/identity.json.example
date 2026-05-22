@@ -1,0 +1,6 @@
+{
+  "name": "Your Name",
+  "email": "your@email.com",
+  "signingkey": "~/.ssh/id_ed25519.pub"
+}
+

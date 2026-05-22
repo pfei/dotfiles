@@ -19,3 +19,6 @@ zsh/.secrets
 .idea/
 *.swp
 *~
+
+# --- Identity ---
+git/identity.json
