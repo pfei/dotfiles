@@ -53,16 +53,19 @@ source "$ZSH_CONFIG_DIR/functions.zsh"
 # ==============================================================================
 # --- PYENV / VIRTUALENVWRAPPER (LAZY LOADING) ---
 # ==============================================================================
+
+# PATH only — essential at startup, virtually free (no process forks)
+export PYENV_ROOT="${PYENV_ROOT:-$HOME/.pyenv}"
+path=("$PYENV_ROOT/bin" "$PYENV_ROOT/shims" $path)
+
 _pyenv_lazy_init() {
-  # Wipe out stubs and completion triggers to prevent conflicts
   unfunction pyenv workon mkvirtualenv rmvirtualenv lsvirtualenv cdvirtualenv 2>/dev/null
   compdef -d workon mkvirtualenv rmvirtualenv lsvirtualenv cdvirtualenv 2>/dev/null
 
-  eval "$(command pyenv init --path)"
+  # init - and virtualenv-init (the slow parts)
   eval "$(command pyenv init -)"
   eval "$(command pyenv virtualenv-init -)"
 
-  # Resolve root and version once to avoid redundant forks
   local _pyenv_root _pyenv_version
   _pyenv_root="$(command pyenv root)"
   _pyenv_version="$(command pyenv version-name)"
