@@ -39,3 +39,6 @@
 
 [mergetool]
     prompt = false
+
+[include]
+    path = /home/pierre/src/private/git/gitconfig.local
