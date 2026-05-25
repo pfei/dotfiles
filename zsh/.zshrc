@@ -117,6 +117,14 @@ fpath=(~/.zsh_autoload_functions $fpath)
 autoload -Uz load_google_api_key
 
 # ==============================================================================
+# --- PRIVATE OVERRIDES ---
+# ==============================================================================
+if [[ -f "$HOME/src/private/zsh/zshrc.private" ]];
+then
+  source "$HOME/src/private/zsh/zshrc.private"
+fi
+
+# ==============================================================================
 # --- LOCAL OVERRIDES ---
 # ==============================================================================
 if [[ -f "$HOME/.zshrc.local" ]]; then
