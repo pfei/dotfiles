@@ -6,19 +6,24 @@ def main():
     print("🔗 Configuring Kitty...")
 
     dotfiles_dir = Path(__file__).resolve().parent
-    source = dotfiles_dir / "kitty.conf"
-    target = Path.home() / ".config" / "kitty" / "kitty.conf"
+    target_dir = Path.home() / ".config" / "kitty"
 
-    target.parent.mkdir(parents=True, exist_ok=True)
+    target_dir.mkdir(parents=True, exist_ok=True)
 
-    if source.exists():
-        if target.is_symlink() or target.exists():
-            target.unlink()
+    config_files = ["kitty.conf", "dracula.conf"]
 
-        target.symlink_to(source)
-        print("✅ Linked configuration: kitty.conf")
-    else:
-        print("⚠️  No kitty.conf found in dotfiles kitty directory.")
+    for file_name in config_files:
+        source = dotfiles_dir / file_name
+        target = target_dir / file_name
+
+        if source.exists():
+            if target.is_symlink() or target.exists():
+                target.unlink()
+
+            target.symlink_to(source)
+            print(f"✅ Linked configuration: {file_name}")
+        else:
+            print(f"⚠️  No {file_name} found in dotfiles kitty directory.")
 
 
 if __name__ == "__main__":

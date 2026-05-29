@@ -27,7 +27,7 @@ def main():
         "mate-terminal",
         "kitty",
     ]
-    gui_only_modules = {"vscode", "themes", "mate-terminal"}
+    gui_only_modules = {"vscode", "themes", "mate-terminal", "kitty"}
 
     for config in configs:
         if is_headless and config in gui_only_modules:
