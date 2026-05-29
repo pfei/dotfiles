@@ -1,6 +1,11 @@
 # --- Paths & System ---
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/sbin:$PATH"
 
+# Force True Color for applications like Helix over SSH
+if [[ -n "$SSH_CONNECTION" || -z "$COLORTERM" ]]; then
+    export COLORTERM=truecolor
+fi
+
 # --- Python: pyenv PATH only (init is lazy — see .zshrc) ---
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
